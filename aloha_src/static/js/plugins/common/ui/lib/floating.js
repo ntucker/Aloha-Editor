@@ -240,32 +240,42 @@ define([
 	 */
 	function floatSurface(surface, editable, duration, callback) {
 		if (typeof duration !== 'number') {
-			duration = DURATION;
-		}
-
+            duration = DURATION;
+        }
 		var topGutter = (parseInt($('body').css('marginTop'), 10) || 0)
 		              + (parseInt($('body').css('paddingTop'), 10) || 0);
 		var $surface = surface.$element;
-		var offset = editable.obj.offset();
-		var top = offset.top;
-		var left = offset.left;
-		var scrollTop = $WINDOW.scrollTop();
-		var availableSpace = top - scrollTop - topGutter;
-		var horizontalOverflow = left + $surface.width() - $WINDOW.width();
+        var offset = editable.obj.offset();  //sane default for unmatched cases
+        var outerOffset = editable.obj.height();  //for floatbelow
+        var titleElements = [".media-body", ".media", ".clearfix", "article" ];  //TODO: make this an option, order is matching order
 
-		if (horizontalOverflow > 0) {
+        for (var item in titleElements) {
+            if (editable.obj.closest(titleElements[item]).is(Object)) {  //check if the title element exists
+                offset = editable.obj.closest(titleElements[item]).offset();  //override offset for top
+                outerOffset = editable.obj.closest(titleElements[item]).height();  //set outer for below
+                break;  //dont match any more
+            }
+        }
+
+        var top = offset.top;
+        var left = editable.obj.offset().left;
+        var scrollTop = $WINDOW.scrollTop();
+        var availableSpace = top - scrollTop - topGutter;
+        var horizontalOverflow = left + $surface.width() - $WINDOW.width();
+
+		if (horizontalOverflow > 0){
 			left = Math.max(0, left - horizontalOverflow);
-		}
+        }
 
-		if (availableSpace >= $surface.height()) {
+        if (availableSpace >= $surface.height()) {
 			floatAbove($surface, {
 				top: top - scrollTop,
 				left: left
 			}, duration, callback);
 		} else if (availableSpace + $surface.height() >
-		           availableSpace + editable.obj.height()) {
+                    availableSpace + editable.obj.height()) {
 			floatBelow($surface, {
-				top: top + editable.obj.height(),
+				top: top - scrollTop + outerOffset,
 				left: left
 			}, duration, callback);
 		} else {

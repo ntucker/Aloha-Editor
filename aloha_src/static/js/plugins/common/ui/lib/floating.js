@@ -244,9 +244,21 @@ define([
 		}
 
 		var topGutter = (parseInt($('body').css('marginTop'), 10) || 0)
-		              + (parseInt($('body').css('paddingTop'), 10) || 0);
+				+ (parseInt($('body').css('paddingTop'), 10) || 0);
 		var $surface = surface.$element;
 		var offset = editable.obj.offset();
+		var outerOffset = editable.obj.outerHeight();
+		var parentElements = Aloha.settings.parentFormElements || [];
+		var compensateDistance = false;
+		for (var i = 0; i < parentElements.length; i++) {
+			var $parent = editable.obj.closest(parentElements[i]);
+			if ($parent.is(Object)) {
+				offset = $parent.offset();
+				compensateDistance = true;
+				outerOffset = $parent.outerHeight();
+				break;
+			}
+		}
 		var top = offset.top;
 		var left = offset.left;
 		var scrollTop = $WINDOW.scrollTop();
@@ -258,32 +270,43 @@ define([
 		}
 
 		if (availableSpace >= $surface.height()) {
+			if (compensateDistance) {
+				top += DISTANCE;
+			}
 			floatAbove($surface, {
-				top: top - scrollTop,
-				left: left
+				top : top - scrollTop,
+				left : left
 			}, duration, callback);
-		} else if (availableSpace + $surface.height() >
-		           availableSpace + editable.obj.height()) {
+		} else if (availableSpace + $surface.height() > availableSpace + editable.obj.height()) {
+			if (compensateDistance) {
+				top -= DISTANCE;
+			}
 			floatBelow($surface, {
-				top: top + editable.obj.height(),
-				left: left
+				top : top - scrollTop + outerOffset,
+				left : left
 			}, duration, callback);
 		} else {
+			if (compensateDistance) {
+				topGutter -= DISTANCE;
+			}
 			floatBelow($surface, {
-				top: topGutter,
-				left: left
+				top : topGutter,
+				left : left
 			}, duration, callback);
 		}
 	}
 
 	/**
 	 * Pins a surface at the speficied position on the viewport.
-	 *
-	 * @param {Surface} surfaces The surfaces that are to be pinned.
-	 * @param {object} position The "top" and "left" position of where the
-	 *                          surface is to be pinned.
-	 * @param {boolean} isFloating Whether or not the surface type is in
-	 *                             "floating" mode or not.
+	 * 
+	 * @param {Surface}
+	 *            surfaces The surfaces that are to be pinned.
+	 * @param {object}
+	 *            position The "top" and "left" position of where the surface is
+	 *            to be pinned.
+	 * @param {boolean}
+	 *            isFloating Whether or not the surface type is in "floating"
+	 *            mode or not.
 	 */
 	function togglePinSurface(surface, position, isFloating) {
 		var $surface = surface.$element;

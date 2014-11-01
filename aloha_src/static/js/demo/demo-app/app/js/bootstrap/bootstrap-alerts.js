@@ -39,11 +39,11 @@
      // set CSS transition event type
      if ( $.support.transition ) {
        transitionEnd = "TransitionEnd"
-       if ( $.browser.webkit ) {
+       if ( Aloha.browser.webkit ) {
         transitionEnd = "webkitTransitionEnd"
-       } else if ( $.browser.mozilla ) {
+       } else if ( Aloha.browser.mozilla ) {
         transitionEnd = "transitionend"
-       } else if ( $.browser.opera ) {
+       } else if ( Aloha.browser.opera ) {
         transitionEnd = "oTransitionEnd"
        }
      }

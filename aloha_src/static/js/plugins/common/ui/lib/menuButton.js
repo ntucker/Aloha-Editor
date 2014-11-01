@@ -38,7 +38,7 @@ define([
 		var action = null;
 		var buttonset = null;
 
-		if ($.browser.msie) {
+		if (Aloha.browser.msie) {
 			wrapper.addClass('aloha-ui-menubutton-iehack');
 		}
 

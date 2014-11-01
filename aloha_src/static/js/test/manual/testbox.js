@@ -222,7 +222,7 @@ Aloha.ready( function() {
 			var timeout = 0;
 
 			// For ie wait for double and triple clicks
-			if( jQuery.browser.msie ) {
+			if( Aloha.browser.msie ) {
 				timeout = 200;
 			}
 

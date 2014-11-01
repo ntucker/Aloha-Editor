@@ -73,7 +73,7 @@ Aloha.require(['jquery', 'aloha/ephemera', 'dom-to-xhtml/dom-to-xhtml'], functio
 
 		var result = Ephemera.prune(input.cloneNode(true)).outerHTML;
 		// IE7/8 refuse to remove the hideFocus field
-		if ($.browser.msie && parseInt($.browser.version, 10) < 9) {
+		if (Aloha.browser.msie && parseInt(Aloha.browser.version, 10) < 9) {
 			result = result.replace(/\shideFocus/gi, '');
 		}
 		equal(result, expected.outerHTML);

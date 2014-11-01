@@ -345,7 +345,7 @@ define([
 		this.rowResize   = this.settings.rowResize   === undefined ? false : this.settings.rowResize;
 
 		// disable table resize settings on browsers below IE8
-		if (jQuery.browser.msie && parseInt(jQuery.browser.version, 10) < 8) {
+		if (Aloha.browser.msie && parseInt(Aloha.browser.version, 10) < 8) {
 			this.tableResize = false;
 			this.colResize = false;
 			this.rowResize = false;
@@ -1291,7 +1291,7 @@ define([
 			if (tableObj) {
 				// Because without the 10ms delay, we cannot place the cursor
 				// automatically into the first cell in IE.
-				if ($.browser.msie) {
+				if (Aloha.browser.msie) {
 					window.setTimeout(function () {
 						tableObj.cells[0].wrapper.get(0).focus();
 					}, 20 );

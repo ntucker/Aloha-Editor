@@ -322,7 +322,7 @@ Aloha.require([
 					&& (!$(node).css('font-family')
 						|| 'auto' == $(node).css('font-family')));
 		}
-		var isPrunable = ($.browser.msie && parseInt($.browser.version) == 7
+		var isPrunable = (Aloha.browser.msie && parseInt(Aloha.browser.version) == 7
 						  ? isPrunableIe7
 						  : null);
 		testMutation('RangeContext.formatStyle - ' + title, before, expected, function (dom, range) {

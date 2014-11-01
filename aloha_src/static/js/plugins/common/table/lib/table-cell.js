@@ -411,7 +411,7 @@ define([
 		var e = (editableNode.jquery) ? editableNode.get(0) : editableNode;
 
 		// Not IE
-		if (!jQuery.browser.msie) {
+		if (!Aloha.browser.msie) {
 			var s = window.getSelection();
 			// WebKit
 			if (s.setBaseAndExtent /*&& e> 0 */ ) {

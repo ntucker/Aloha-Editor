@@ -167,7 +167,7 @@ function($, Plugin,DropFilesRepository) {
 			this.processedFiles = 0;
 			Aloha.Log.info(that, this.droppedFilesCount + " files have been dropped on the page");
 			
-//			if (jQuery.browser.msie) {
+//			if (Aloha.browser.msie) {
 //				var textdata = event.dataTransfer.getData('Text');
 //				var urldata = event.dataTransfer.getData('URL');
 //				var imagedataW = window.event.dataTransfer.getData('URL');
@@ -279,7 +279,7 @@ function($, Plugin,DropFilesRepository) {
 				this.onstr = "";
 				this.mydoc = document;
 				this.methodName = "addEventListener";
-				if (jQuery.browser.msie) {
+				if (Aloha.browser.msie) {
 					this.onstr = "on";
 					this.methodName = "attachEvent";
 					this.mydoc = document.body;

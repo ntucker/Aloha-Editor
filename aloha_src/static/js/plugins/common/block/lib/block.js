@@ -693,7 +693,7 @@ define([
 		 * least they do not work anymore
 		 */
 		_disableUglyInternetExplorerDragHandles: function () {
-			if (jQuery.browser.msie) {
+			if (Aloha.browser.msie) {
 				var $elem = this.$element.get(0);
 				$elem.onresizestart = Fn.returnFalse;
 				$elem.oncontrolselect = Fn.returnFalse;
@@ -827,7 +827,7 @@ define([
 				},
 				revertDuration: 250,
 				stop: function () {
-					if (jQuery.browser.msie && 7 === parseInt(jQuery.browser.version, 10)) {
+					if (Aloha.browser.msie && 7 === parseInt(Aloha.browser.version, 10)) {
 						dropFn();
 					}
 					jQuery.each(editablesWhichNeedToBeCleaned, function () {
@@ -915,7 +915,7 @@ define([
 						 * as drop target.
 						 */
 						drop: function () {
-							if (!(jQuery.browser.msie && 7 === parseInt(jQuery.browser.version, 10))) {
+							if (!(Aloha.browser.msie && 7 === parseInt(Aloha.browser.version, 10))) {
 								dropFn();
 							}
 						}
@@ -1020,8 +1020,8 @@ define([
 				leftWordPartLength = Math.floor(word.length / 2);
 
 				// For Internet Explorer, we only make dropping AFTER words possible to improve performance
-				var browserMajorVersion = parseInt(jQuery.browser.version, 10);
-				if (jQuery.browser.msie && (7 === browserMajorVersion || 8 === browserMajorVersion)) {
+				var browserMajorVersion = parseInt(Aloha.browser.version, 10);
+				if (Aloha.browser.msie && (7 === browserMajorVersion || 8 === browserMajorVersion)) {
 					leftWordPartLength = 0;
 				}
 

@@ -68,7 +68,7 @@ define([
 
 		$element.filter(nonVoidBlocksSelector).filter(':empty').remove();
 
-		if ($.browser.msie) {
+		if (Aloha.browser.msie) {
 			// Because even though content edited by Aloha Editor is no longer
 			// exported with propping <br>'s that are annotated with
 			// "aloha-end-br" classes,  this clean-up still needs to be done for
@@ -116,7 +116,7 @@ define([
 	 */
 	function propBlockElements(i, element) {
 		var $element = $(element);
-		if ($.browser.msie) {
+		if (Aloha.browser.msie) {
 			$element.filter(nonVoidBlocksSelector).filter(':empty').append('<br/>');
 			$element.children(NOT_ALOHA_BLOCK_FILTER).each(propBlockElements);
 		}
@@ -136,7 +136,7 @@ define([
 				$content.children(NOT_ALOHA_BLOCK_FILTER)
 				        .each(prepareForEditing);
 
-				if ($.browser.msie && $.browser.version <= 7) {
+				if (Aloha.browser.msie && Aloha.browser.version <= 7) {
 					$content.children(NOT_ALOHA_BLOCK_FILTER)
 					        .each(prepareEditingInOldIE);
 				}

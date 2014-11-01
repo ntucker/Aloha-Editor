@@ -1638,7 +1638,7 @@ define([
 
 		//TODO: currently, removing the cursor selection can't be
 		//     reliably implemented.
-		//if ( ! jQuery.browser.msie ) {
+		//if ( ! Aloha.browser.msie ) {
 		//    Aloha.getSelection().removeAllRanges();
 		//}
 

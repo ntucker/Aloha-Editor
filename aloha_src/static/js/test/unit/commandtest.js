@@ -33,16 +33,16 @@ function( TestUtils ) {
 	var FormatPlugin, ListPlugin;
 
 	var browser, browserversion;
-	if (jQuery.browser.msie) {
+	if (Aloha.browser.msie) {
 		browser = "msie";
-	} else if (jQuery.browser.webkit) {
+	} else if (Aloha.browser.webkit) {
 		browser = "webkit";
-	} else if (jQuery.browser.opera) {
+	} else if (Aloha.browser.opera) {
 		browser = "opera";
-	} else if (jQuery.browser.mozilla) {
+	} else if (Aloha.browser.mozilla) {
 		browser = "mozilla";
 	}
-	browserversion = browser + jQuery.browser.version;
+	browserversion = browser + Aloha.browser.version;
 
 	module('CommandTest');
 

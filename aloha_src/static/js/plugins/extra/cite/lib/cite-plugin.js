@@ -358,7 +358,7 @@ define([
 				icon: nsClass('button', 'block-button'),
 				click: function () {
 					if (!plugin.removeQuote()) {
-						that.addBlockQuote();
+					    plugin.addBlockQuote();
 					}
 				}
 			});

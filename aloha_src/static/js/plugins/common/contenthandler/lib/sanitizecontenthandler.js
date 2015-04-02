@@ -139,11 +139,7 @@ function ( Aloha, jQuery, ContentHandlerManager, Plugin, console ) {
 		config.filters = [function (elem) {
 			return elem.contentEditable != "false";
 		}];
-		if (config == "none") {
-		    sanitize = false;
-		} else {
-		    sanitize = new Sanitize(config, jQuery);
-		}
+		sanitize = new Sanitize(config, jQuery);
 	}
 
 	var SanitizeContentHandler = ContentHandlerManager.createHandler({
@@ -180,11 +176,13 @@ function ( Aloha, jQuery, ContentHandlerManager, Plugin, console ) {
 					}
 				}
 			}
-
-			initSanitize(sanitizeConfig);
-
-			if (sanitize === false) {
+			
+			if (!sanitizeConfig) {
 			    return content;
+			}
+
+			if ( typeof sanitize === 'undefined' || typeof sanitizeConfig !== 'undefined') {
+			    initSanitize(sanitizeConfig);
 			}
 
 			if (typeof content === 'string'){
